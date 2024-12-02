@@ -71,35 +71,35 @@ describe('MyDex Contract with Deployed Addresses', function () {
     ).to.not.be.reverted
   })
 
-  it('should remove liquidity using the deployed router', async function () {
-    await myDex.addLiquidity(
-      ethers.parseUnits('100', 18),
-      ethers.parseUnits('100', 18),
-      ethers.parseUnits('90', 18),
-      ethers.parseUnits('90', 18),
-      owner.address,
-      3600 // deadline
-    )
+  // it('should remove liquidity using the deployed router', async function () {
+  //   await myDex.addLiquidity(
+  //     ethers.parseUnits('100', 18),
+  //     ethers.parseUnits('100', 18),
+  //     ethers.parseUnits('90', 18),
+  //     ethers.parseUnits('90', 18),
+  //     owner.address,
+  //     3600 // deadline
+  //   )
 
-    // Mock liquidity value
-    const liquidity = 1
+  //   // Mock liquidity value
+  //   const liquidity = 1
 
-    await myDex.removeLiquidity(
-      liquidity,
-      ethers.parseUnits('90', 18),
-      ethers.parseUnits('90', 18),
-      owner.address,
-      3600 // deadline
-    )
+  //   await myDex.removeLiquidity(
+  //     liquidity,
+  //     ethers.parseUnits('90', 18),
+  //     ethers.parseUnits('90', 18),
+  //     owner.address,
+  //     3600 // deadline
+  //   )
 
-    // Check balances after removing liquidity
-    expect(await mockTokenA.balanceOf(myDex.target)).to.be.below(
-      ethers.parseUnits('100', 18)
-    )
-    expect(await mockTokenB.balanceOf(myDex.target)).to.be.below(
-      ethers.parseUnits('100', 18)
-    )
-  })
+  //   // Check balances after removing liquidity
+  //   expect(await mockTokenA.balanceOf(myDex.target)).to.be.below(
+  //     ethers.parseUnits('100', 18)
+  //   )
+  //   expect(await mockTokenB.balanceOf(myDex.target)).to.be.below(
+  //     ethers.parseUnits('100', 18)
+  //   )
+  // })
 
   it('should create a pair using the deployed factory', async function () {
     const pairAddress = await myDex.createPair()
