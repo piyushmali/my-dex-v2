@@ -2,14 +2,22 @@
 
 ## Overview
 
-MyDex is a sophisticated decentralized exchange (DEX) built on Polygon's Amoy testnet, featuring advanced liquidity management, governance, and token swapping capabilities. The project combines a custom DEX contract with a governance token system to provide a robust and flexible decentralized trading platform.
+MyDex is a decentralized exchange (DEX) built on the Polygon blockchain, leveraging Uniswap's infrastructure for secure and efficient token swaps and liquidity management. The platform introduces enhanced features such as governance, staking rewards, whitelisting, and advanced safety mechanisms to provide a robust DeFi experience.
+
+## Deployed Contracts (Polygon Amoy Testnet)
+
+- **Dex Contract**: [`0xe984806f981b5172C7fC0DC68975c7FeEd806cA8`](https://amoy.polygonscan.com/address/0xe984806f981b5172C7fC0DC68975c7FeEd806cA8#code)
+- **Governance Token**: [`0x53A814bCfE0970c528C17BE65BBF4e0d4a646394`](https://amoy.polygonscan.com/address/0x53A814bCfE0970c528C17BE65BBF4e0d4a646394#code)
+- **Test Token A**: [`0xc740c093Da28593aB39ec39253aF63d896d4c03F`](https://amoy.polygonscan.com/address/0xc740c093Da28593aB39ec39253aF63d896d4c03F#code)
+- **Test Token B**: [`0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd`](https://amoy.polygonscan.com/address/0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd#code)
 
 ## Key Features
 
 ### 1. Advanced Liquidity Management
 
 - **Token Whitelisting**: Only pre-approved tokens can be added to liquidity pools, ensuring security and quality control.
-- **Liquidity Tracking**: Precisely tracks liquidity providers for each token pair.
+- **Liquidity Tracking**:
+  - Precisely tracks liquidity providers for each token pair.
   - Records the amount of liquidity provided by each user
   - Enables fair distribution of staking rewards
 - **Staking Rewards System**
@@ -105,13 +113,6 @@ MyDex is a sophisticated decentralized exchange (DEX) built on Polygon's Amoy te
 - Token allocation with custom vesting schedules
 - Governance proposal creation
 - Cliff and linear vesting implementation
-
-## Deployed Contracts (Polygon Amoy Testnet)
-
-- **Dex Contract**: [`0xe984806f981b5172C7fC0DC68975c7FeEd806cA8`](https://amoy.polygonscan.com/address/0xe984806f981b5172C7fC0DC68975c7FeEd806cA8#code)
-- **Governance Token**: [`0x53A814bCfE0970c528C17BE65BBF4e0d4a646394`](https://amoy.polygonscan.com/address/0x53A814bCfE0970c528C17BE65BBF4e0d4a646394#code)
-- **Test Token A**: [`0xc740c093Da28593aB39ec39253aF63d896d4c03F`](https://amoy.polygonscan.com/address/0xc740c093Da28593aB39ec39253aF63d896d4c03F#code)
-- **Test Token B**: [`0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd`](https://amoy.polygonscan.com/address/0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd#code)
 
 ## Getting Started
 
