@@ -1,100 +1,106 @@
-# My DEX v2
+# MyDex: Decentralized Token Exchange
 
-**My DEX v2** is a decentralized exchange (DEX) built on top of Uniswap V2, enabling users to interact with token pairs, add/remove liquidity, and perform token swaps. This project utilizes Uniswap V2's core and periphery contracts while adding custom features and token integrations.
+## Overview
 
----
+MyDex is a Solidity-based decentralized exchange (DEX) smart contract built on Uniswap V2 infrastructure, providing liquidity management, token swapping, and fee collection functionalities.
+
+## Contract Addresses
+
+- **MyDex Contract:** `0xee007ba8B00621F8AE656E907534dEb2A8556637`
+- **MyTokenA:** `0x20332abC85F314bbd327FB59E9133Df507badF52`
+- **MyTokenB:** `0x058C176a248F1EEaD1EeB219DF908E44c3c75A63`
+- **UniswapV2Factory:** `0x997FF200E19870F056b247A7d0B2Cc6F08Ca73c1`
+- **UniswapV2Router02:** `0x35acf34A82492967a132Ec251B580DCaD7CF067D`
+- **WETH9:** `0x8bab02D6FF57b9AF6f3c7a013050DB95cc8c2fCC`
 
 ## Features
 
-- **Liquidity Management**
-  - Add liquidity to token pairs.
-  - Remove liquidity and withdraw corresponding token amounts.
-- **Token Swapping**
-  - Swap tokens using a customizable path via Uniswap's `swapExactTokensForTokens`.
-- **Pair Creation and Management**
-  - Create new token pairs.
-  - Retrieve pair addresses for existing token pairs.
+- Liquidity provision and removal
+- Token swapping with fee mechanism
+- Emergency withdrawal
+- Supported token pair management
+- Fee collection
 
----
+## Key Functions
 
-## Deployed Addresses
+### Liquidity Management
 
-| **Component**         | **Address**                                                                                                                        |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| **MyDex**             | [0x8043950ba6555505ef2C894fCf02623E51Eb24a4](https://amoy.polygonscan.com/address/0x8043950ba6555505ef2C894fCf02623E51Eb24a4#code) |
-| **MyTokenA**          | [0xf361803983295fEF4763182C7e9Bb8014FE7d8e2](https://amoy.polygonscan.com/address/0xf361803983295fEF4763182C7e9Bb8014FE7d8e2#code) |
-| **MyTokenB**          | [0x078c197A9a2791c0692a78aa7E939829923a1aac](https://amoy.polygonscan.com/address/0x078c197A9a2791c0692a78aa7E939829923a1aac#code) |
-| **UniswapV2Factory**  | [0x48e8f8342dC58e28DBd81d1F4d2442CF369D51f1](https://amoy.polygonscan.com/address/0x48e8f8342dC58e28DBd81d1F4d2442CF369D51f1#code) |
-| **UniswapV2Router02** | [0x8a7fD7429aD9131ea9866d6af901d3F81598E081](https://amoy.polygonscan.com/address/0x8a7fD7429aD9131ea9866d6af901d3F81598E081#code) |
-| **WETH9**             | [0x90852dF4AB41364d82d9BaBae3EF4109cDE01825](https://amoy.polygonscan.com/address/0x90852dF4AB41364d82d9BaBae3EF4109cDE01825#code) |
+- `addLiquidity()`: Add liquidity to a token pair
+- `removeLiquidityEnhanced()`: Remove liquidity from a token pair
 
----
+### Token Swapping
 
-## Setup and Deployment
+- `swapTokensWithFee()`: Swap tokens with a 0.3% fee mechanism
+
+### Administration
+
+- `addSupportedPair()`: Add new token pairs
+- `updateFeeCollector()`: Update fee collection address
+- `emergencyWithdraw()`: Withdraw tokens in case of emergencies
+
+## Fee Structure
+
+- Fixed fee percentage: 0.3%
+- Fee is collected and sent to a designated fee collector address
+
+## Security Considerations
+
+- Uses OpenZeppelin's `Ownable` for access control
+- Implements `ReentrancyGuard` to prevent re-entrancy attacks
+- External function calls routed through Uniswap V2 Router
+
+## Development Environment
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/)
-- [Hardhat](https://hardhat.org/)
-- Installed dependencies using:
+- Hardhat
+- Node.js
+- Solidity ^0.8.20
 
-  ```bash
-  npm install
-  ```
+### Dependencies
 
----
+- @openzeppelin/contracts: ^5.1.0
+- @uniswap/v2-core: ^1.0.1
+- @uniswap/v2-periphery: ^1.1.0-beta.0
 
-### Environment Setup
+### Network Configuration
 
-Create a `.env` file in the root directory with the following details:
+- Default Network: Polygon Amoy Testnet
+- Chain ID: 80002
 
-```plaintext
-PRIVATE_KEY=<your-wallet-private-key>
-INFURA_PROJECT_ID=<your-infura-project-id>
-NETWORK=<network-name>
-```
+## Deployment
 
----
-
-### Deploying Contracts
-
-To deploy the `MyDex` contract on your configured network, run:
+1. Install dependencies
 
 ```bash
-npx hardhat ignition deploy ./ignition/modules/deploy.js --network <network-name> --verify
+npm install
 ```
 
----
+2. Configure environment variables
 
-### Testing
+- Create a `.env` file with:
+  - `POLYGON_AMOY_RPC_URL`
+  - `PRIVATE_KEY`
+  - `POLYGONSCAN_API_KEY`
 
-Run the tests using:
+3. Deploy contract
+
+```bash
+npx hardhat run scripts/deploy.js --network amoy
+```
+
+## Testing
 
 ```bash
 npx hardhat test
 ```
 
----
-
-### Verifying Contracts
-
-To verify deployed contracts, run:
+## Verify on PolygonScan
 
 ```bash
-npx hardhat verify <contract-address> --network <network-name>
+npx hardhat verify --network amoy <CONTRACT_ADDRESS>
 ```
-
----
-
-## Acknowledgments
-
-- **[OpenZeppelin](https://openzeppelin.com/):** For secure contract standards.
-- **[Uniswap V2](https://uniswap.org/):** For the foundational DEX infrastructure.
-
----
 
 ## License
 
-This project is licensed under the **MIT License**. See the `LICENSE` file for details.
-
----
+MIT License
