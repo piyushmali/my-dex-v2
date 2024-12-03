@@ -14,7 +14,13 @@ module.exports = buildModule('DexModule', (m) => {
   // Fee collector address
   const feeCollectorAddress = m.getParameter(
     'feeCollectorAddress',
-    '0x87170c5c3b018dd29701fcb4debca1f152d1053d' // Replace with your fee collector address
+    '0x87170c5c3b018dd29701fcb4debca1f152d1053d'
+  )
+
+  // Governance token address
+  const governanceTokenAddress = m.getParameter(
+    'governanceTokenAddress',
+    '0x53A814bCfE0970c528C17BE65BBF4e0d4a646394'
   )
 
   // Deploy the Dex contract
@@ -22,6 +28,7 @@ module.exports = buildModule('DexModule', (m) => {
     uniswapRouterAddress,
     uniswapFactoryAddress,
     feeCollectorAddress,
+    governanceTokenAddress,
   ])
 
   return { dex }
