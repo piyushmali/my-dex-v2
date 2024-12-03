@@ -1,106 +1,160 @@
-# MyDex: Decentralized Token Exchange
+# MyDex: Decentralized Exchange with Advanced Features
 
 ## Overview
 
-MyDex is a Solidity-based decentralized exchange (DEX) smart contract built on Uniswap V2 infrastructure, providing liquidity management, token swapping, and fee collection functionalities.
+MyDex is a sophisticated decentralized exchange (DEX) built on Polygon's Amoy testnet, featuring advanced liquidity management, governance, and token swapping capabilities. The project combines a custom DEX contract with a governance token system to provide a robust and flexible decentralized trading platform.
 
-## Contract Addresses
+## Key Features
 
-- **MyDex Contract:** `0xee007ba8B00621F8AE656E907534dEb2A8556637`
-- **MyTokenA:** `0x20332abC85F314bbd327FB59E9133Df507badF52`
-- **MyTokenB:** `0x058C176a248F1EEaD1EeB219DF908E44c3c75A63`
-- **UniswapV2Factory:** `0x997FF200E19870F056b247A7d0B2Cc6F08Ca73c1`
-- **UniswapV2Router02:** `0x35acf34A82492967a132Ec251B580DCaD7CF067D`
-- **WETH9:** `0x8bab02D6FF57b9AF6f3c7a013050DB95cc8c2fCC`
+### 1. Advanced Liquidity Management
 
-## Features
+- **Token Whitelisting**: Only pre-approved tokens can be added to liquidity pools, ensuring security and quality control.
+- **Liquidity Tracking**: Precisely tracks liquidity providers for each token pair.
+  - Records the amount of liquidity provided by each user
+  - Enables fair distribution of staking rewards
+- **Staking Rewards System**
+  - Automatically calculates rewards based on liquidity contribution
+  - Reward rate of 0.1% of liquidity provided
+  - Users can claim rewards for specific token pairs
 
-- Liquidity provision and removal
-- Token swapping with fee mechanism
-- Emergency withdrawal
-- Supported token pair management
-- Fee collection
+### 2. Token Swapping Mechanism
 
-## Key Functions
+- **Fee-Based Swapping**
+  - 0.3% fee on every token swap
+  - Fees collected and transferred to a designated fee collector
+  - Supports multi-hop token swaps through different trading paths
+- **Whitelist Protection**
+  - Ensures only whitelisted tokens can be swapped
+  - Prevents potential scam or malicious token interactions
+- **Slippage and Deadline Control**
+  - Users can specify minimum output amounts
+  - Set transaction deadline to prevent long-pending transactions
 
-### Liquidity Management
+### 3. Price Oracle and Manipulation Prevention
 
-- `addLiquidity()`: Add liquidity to a token pair
-- `removeLiquidity()`: Remove liquidity from a token pair
+- **Price Tracking**
+  - Tracks token prices between pairs
+  - Updates allowed only once per hour to prevent frequent manipulation
+  - Uses Uniswap's price calculation mechanism
+- **Price Check Cooldown**
+  - 1-hour cooldown between price updates
+  - Provides stability and prevents rapid price fluctuations
 
-### Token Swapping
+### 4. Governance and Access Control
 
-- `swapTokensWithFee()`: Swap tokens with a 0.3% fee mechanism
+- **Ownership Management**
+  - Contract owner can perform critical operations
+  - Whitelist/delist tokens
+  - Pause/unpause contract in emergencies
+- **Governance Token Integration**
+  - Requires governance token balance for certain operations
+  - Fee percentage updates controlled by token holders
+  - Minimum token balance required for proposal creation
 
-### Administration
+### 5. Security Features
 
-- `addSupportedPair()`: Add new token pairs
-- `updateFeeCollector()`: Update fee collection address
-- `emergencyWithdraw()`: Withdraw tokens in case of emergencies
+- **ReentrancyGuard**
+  - Prevents recursive call attacks
+  - Protects critical functions like liquidity addition and withdrawal
+- **Emergency Mechanisms**
+  - Contract pause functionality
+  - Emergency token withdrawal
+  - Flexible fee collector updates
+- **Safe Token Transfers**
+  - Uses OpenZeppelin's SafeERC20 for secure token interactions
+  - Checks and validates token transfers
 
-## Fee Structure
+### 6. Transparency and Accessibility
 
-- Fixed fee percentage: 0.3%
-- Fee is collected and sent to a designated fee collector address
+- **View Functions**
+  - Retrieve supported token pairs
+  - Check staking rewards
+  - Get real-time token prices
+- **Event Logging**
+  - Comprehensive event emission for all critical actions
+  - Enables easy tracking of liquidity, swaps, and governance actions
 
-## Security Considerations
+### 7. Flexible Token Pair Management
 
-- Uses OpenZeppelin's `Ownable` for access control
-- Implements `ReentrancyGuard` to prevent re-entrancy attacks
-- External function calls routed through Uniswap V2 Router
+- **Dynamic Pair Creation**
+  - Automatically create token pairs if they don't exist
+  - Add and track supported token pairs
+  - Extensible architecture for future token integrations
 
-## Development Environment
+### 8. Customizable Fee Structure
+
+- **Configurable Fee Percentage**
+  - Owner and high-stake governance token holders can update fees
+  - Maximum fee limit of 1% to prevent excessive charges
+- **Transparent Fee Collection**
+  - Dedicated fee collector address
+  - Ability to update fee collector by contract owner
+
+## Smart Contracts
+
+### Dex Contract
+
+- Integrates with Uniswap V2 Router and Factory
+- Supports liquidity provision and token swapping
+- Implements fee collection and distribution
+- Provides emergency withdraw mechanism
+
+### GovernanceToken Contract
+
+- ERC20 token with advanced vesting
+- Token allocation with custom vesting schedules
+- Governance proposal creation
+- Cliff and linear vesting implementation
+
+## Deployed Contracts (Polygon Amoy Testnet)
+
+- **Dex Contract**: [`0xe984806f981b5172C7fC0DC68975c7FeEd806cA8`](https://amoy.polygonscan.com/address/0xe984806f981b5172C7fC0DC68975c7FeEd806cA8#code)
+- **Governance Token**: [`0x53A814bCfE0970c528C17BE65BBF4e0d4a646394`](https://amoy.polygonscan.com/address/0x53A814bCfE0970c528C17BE65BBF4e0d4a646394#code)
+- **Test Token A**: [`0xc740c093Da28593aB39ec39253aF63d896d4c03F`](https://amoy.polygonscan.com/address/0xc740c093Da28593aB39ec39253aF63d896d4c03F#code)
+- **Test Token B**: [`0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd`](https://amoy.polygonscan.com/address/0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd#code)
+
+## Getting Started
 
 ### Prerequisites
 
-- Hardhat
 - Node.js
-- Solidity ^0.8.20
+- Hardhat
+- Polygon Wallet with Amoy testnet MATIC
 
-### Dependencies
-
-- @openzeppelin/contracts: ^5.1.0
-- @uniswap/v2-core: ^1.0.1
-- @uniswap/v2-periphery: ^1.1.0-beta.0
-
-### Network Configuration
-
-- Default Network: Polygon Amoy Testnet
-- Chain ID: 80002
-
-## Deployment
-
-1. Install dependencies
+### Installation
 
 ```bash
+git clone https://github.com/yourusername/my-dex-v2.git
+cd my-dex-v2
 npm install
 ```
 
-2. Configure environment variables
+### Deployment
 
-- Create a `.env` file with:
-  - `POLYGON_AMOY_RPC_URL`
-  - `PRIVATE_KEY`
-  - `POLYGONSCAN_API_KEY`
+Ensure you have configured your `.env` file with:
 
-3. Deploy contract
+- `POLYGON_AMOY_RPC_URL`
+- `PRIVATE_KEY`
+- `POLYGONSCAN_API_KEY`
 
-```bash
-npx hardhat run scripts/deploy.js --network amoy
-```
-
-## Testing
+Deploy using Hardhat Ignition:
 
 ```bash
-npx hardhat test
+npx hardhat ignition deploy ignition/modules/deploy.js --network amoy
 ```
 
-## Verify on PolygonScan
+## Contributing
 
-```bash
-npx hardhat verify --network amoy <CONTRACT_ADDRESS>
-```
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a new Pull Request
 
 ## License
 
-MIT License
+This project is licensed under the MIT License.
+
+## Disclaimer
+
+This is a testnet project and should not be used with real assets. Always do your own research and understand the risks involved in decentralized finance.
