@@ -3,7 +3,7 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol";
 import "@uniswap/v2-core/contracts/interfaces/IUniswapV2Factory.sol";
 
@@ -58,13 +58,13 @@ contract Dex is Ownable, ReentrancyGuard {
         address _uniswapRouterAddress,
         address _uniswapFactoryAddress,
         address _feeCollector
-    ) {
+    ) Ownable(msg.sender) {
         uniswapRouter = IUniswapV2Router02(_uniswapRouterAddress);
         uniswapFactory = IUniswapV2Factory(_uniswapFactoryAddress);
         feeCollector = _feeCollector;
     }
 
-    // Enhanced add liquidity function with tracking
+    // add liquidity function with tracking
     function addLiquidity(
         address _tokenA,
         address _tokenB,
@@ -108,7 +108,7 @@ contract Dex is Ownable, ReentrancyGuard {
         return (amountA, amountB, liquidity);
     }
 
-    // Enhanced swap function with fee mechanism
+    // swap function with fee mechanism
     function swapTokensWithFee(
         uint256 amountIn,
         uint256 amountOutMin,
@@ -147,7 +147,7 @@ contract Dex is Ownable, ReentrancyGuard {
         );
     }
 
-    // Enhanced remove liquidity with tracking
+    // remove liquidity with tracking
     function removeLiquidityEnhanced(
         address _tokenA,
         address _tokenB,

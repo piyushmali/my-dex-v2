@@ -1,27 +1,28 @@
 const { buildModule } = require('@nomicfoundation/hardhat-ignition/modules')
 
-const tokenA = '0xf361803983295fEF4763182C7e9Bb8014FE7d8e2'
-const tokenB = '0x078c197A9a2791c0692a78aa7E939829923a1aac'
-
-module.exports = buildModule('MyDexModule', (m) => {
+module.exports = buildModule('DexModule', (m) => {
+  // Uniswap router and factory addresses
   const uniswapRouterAddress = m.getParameter(
     'uniswapRouterAddress',
-    '0x8a7fD7429aD9131ea9866d6af901d3F81598E081'
+    '0x35acf34A82492967a132Ec251B580DCaD7CF067D'
   )
   const uniswapFactoryAddress = m.getParameter(
     'uniswapFactoryAddress',
-    '0x48e8f8342dC58e28DBd81d1F4d2442CF369D51f1'
+    '0x997FF200E19870F056b247A7d0B2Cc6F08Ca73c1'
   )
-  const tokenAAddress = m.getParameter('tokenAAddress', tokenA)
-  const tokenBAddress = m.getParameter('tokenBAddress', tokenB)
 
-  // Deploy the MyDex contract
-  const myDex = m.contract('MyDex', [
+  // Fee collector address
+  const feeCollectorAddress = m.getParameter(
+    'feeCollectorAddress',
+    '0x87170c5c3b018dd29701fcb4debca1f152d1053d' // Replace with your fee collector address
+  )
+
+  // Deploy the Dex contract
+  const dex = m.contract('Dex', [
     uniswapRouterAddress,
     uniswapFactoryAddress,
-    tokenAAddress,
-    tokenBAddress,
+    feeCollectorAddress,
   ])
 
-  return { myDex }
+  return { dex }
 })
