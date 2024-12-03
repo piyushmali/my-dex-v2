@@ -1,7 +1,7 @@
 MyDex -> 0xe984806f981b5172C7fC0DC68975c7FeEd806cA8
 GovernanceToken -> 0x53A814bCfE0970c528C17BE65BBF4e0d4a646394
-MyTokenA -> 0x20332abC85F314bbd327FB59E9133Df507badF52
-MyTokenB -> 0x058C176a248F1EEaD1EeB219DF908E44c3c75A63
+MyTokenA -> 0xc740c093Da28593aB39ec39253aF63d896d4c03F
+MyTokenB -> 0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd
 UniswapV2Factory -> 0x997FF200E19870F056b247A7d0B2Cc6F08Ca73c1
 UniswapV2Router02 -> 0x35acf34A82492967a132Ec251B580DCaD7CF067D
 WETH9 -> 0x8bab02D6FF57b9AF6f3c7a013050DB95cc8c2fCC
@@ -9,14 +9,23 @@ hex --> 0x2ec84810c6c770e8451b8714ef94b6fe505bc69d9e944b557883f54d41e0108e
 
 -------------------------------------------------------------------------------------------------------------------------
 
-PS E:\0Codes\my-dex-v2> npx hardhat ignition verify chain-80002 --include-unrelated-contracts
+
+PS E:\0Codes\my-dex-v2> npx hardhat ignition verify chain-80002 --include-unrelated-contracts                
 Verifying contract "contracts/GovernanceToken.sol:GovernanceToken" for network amoy...
-Successfully verified contract "contracts/GovernanceToken.sol:GovernanceToken" for network amoy:
+Contract contracts/GovernanceToken.sol:GovernanceToken already verified on network amoy:
   - https://amoy.polygonscan.com/address/0x53A814bCfE0970c528C17BE65BBF4e0d4a646394#code
 
 Verifying contract "contracts/MyDex.sol:Dex" for network amoy...
-Successfully verified contract "contracts/MyDex.sol:Dex" for network amoy:
+Contract contracts/MyDex.sol:Dex already verified on network amoy:
   - https://amoy.polygonscan.com/address/0xe984806f981b5172C7fC0DC68975c7FeEd806cA8#code
+
+Verifying contract "contracts/TokenA.sol:MyTokenA" for network amoy...
+Successfully verified contract "contracts/TokenA.sol:MyTokenA" for network amoy:
+  - https://amoy.polygonscan.com/address/0xc740c093Da28593aB39ec39253aF63d896d4c03F#code
+
+Verifying contract "contracts/TokenB.sol:MyTokenB" for network amoy...
+Successfully verified contract "contracts/TokenB.sol:MyTokenB" for network amoy:
+  - https://amoy.polygonscan.com/address/0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd#code
 
 PS E:\0Codes\my-dex-v2> 
 

@@ -1,4 +1,6 @@
 {
   "GovernanceTokenModule#GovernanceToken": "0x53A814bCfE0970c528C17BE65BBF4e0d4a646394",
-  "DexModule#Dex": "0xe984806f981b5172C7fC0DC68975c7FeEd806cA8"
+  "DexModule#Dex": "0xe984806f981b5172C7fC0DC68975c7FeEd806cA8",
+  "MyTokensModule#MyTokenA": "0xc740c093Da28593aB39ec39253aF63d896d4c03F",
+  "MyTokensModule#MyTokenB": "0xeDeD090AA514493b1cf54d19A48830Aa5aB70EBd"
 }
