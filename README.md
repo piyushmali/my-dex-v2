@@ -26,7 +26,7 @@ MyDex is a Solidity-based decentralized exchange (DEX) smart contract built on U
 ### Liquidity Management
 
 - `addLiquidity()`: Add liquidity to a token pair
-- `removeLiquidityEnhanced()`: Remove liquidity from a token pair
+- `removeLiquidity()`: Remove liquidity from a token pair
 
 ### Token Swapping
 
