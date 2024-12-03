@@ -148,7 +148,7 @@ contract Dex is Ownable, ReentrancyGuard {
     }
 
     // remove liquidity with tracking
-    function removeLiquidityEnhanced(
+    function removeLiquidity(
         address _tokenA,
         address _tokenB,
         uint256 liquidity,
